@@ -1,10 +1,17 @@
-# LoadingButton 
+# LoadingButton
 
 一个带ProgressBar的Button，通过自定义ConstraintLayout实现。
 
 <video id="video" controls="" preload="none" poster="https://github.com/laxian/LoadingButton/blob/master/images/img-cover.png">
       <source id="mp4" src="https://github.com/laxian/LoadingButton/blob/master/images/video.mp4" type="video/mp4">
 </video>
+
+![img-loading](images/img-loading.png)
+![img-loading](images/img-cover.png)
+
+<img src="https://github.com/laxian/LoadingButton/raw/main/images/img-cover.png" width="360" height="640" />
+
+<img src="https://github.com/laxian/LoadingButton/raw/main/images/img-loading.png" width="360" height="640" />
 
 ## 使用示例
 
