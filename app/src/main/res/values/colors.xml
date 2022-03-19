@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="mdw_theme">#FFFF3F49</color>                     <!-- 主题色 -->
+    <color name="mdw_error">#FFFF3F49</color>                     <!--错误提示颜色-->
+
+    <color name="mdw_h">#FF2D3548</color>                         <!-- 标题 -->
+    <color name="mdw_h1">#FF777C8A</color>                        <!-- 二级标题 -->
+
+    <color name="mdw_hint">#FF999999</color>                      <!--提示文字的颜色-->
+    <color name="mdw_hint2">#7F777C8A</color>                        <!-- 二级标题 -->
+
+    <color name="mdw_white">#FFFFFFFF</color>
+    <color name="mdw_white_90">#E5FFFFFF</color>
+    <color name="mdw_grey">#FFBBBBBB</color>
+    <color name="mdw_grey_tran">#1A000000</color>
+    <color name="mdw_black">#FF000000</color>
+    <color name="mdw_ripple">#33000000</color>
+    <color name="mdw_alpha_black">#CC000000</color>
+    <color name="mdw_tipText">#FF666666</color>
+    <color name="mdw_transparent">#00000000</color>
+
+    <color name="mdw_line">#FFF5F5F5</color>                    <!--    卡片分割线-->
+    <color name="mdw_et_line">#FF9C9C9C</color>                 <!--    输入框下划线颜色-->
+    <color name="mdw_link">#FFFF485B</color>                    <!--    文字高亮可点击-->
+    <color name="mdw_dialog_btn_grey">#FFF2F2F2</color>         <!--    不可用button文字-->
+
+    <color name="mdw_btn_shadow_grey">#66B6B6B6</color>
+    <color name="mdw_shadow">#66FF4250</color>
+    <color name="mdw_shadowGrey">#33FFB0B7</color>
+    <color name="mdw_appRedLight">#FFFF5D88</color>
+    <color name="mdw_progress">#FFF9D8FB</color>
+    <color name="mdw_progress_white">#FFFFFFFF</color>
+    <color name="mdw_takeaway">#FFFF6A29</color>
+    <color name="mdw_takeaway2">#FFFFC37C</color>
+    <color name="mdw_express">#FFFF5C86</color>
+    <color name="mdw_express2">#FFFF404B</color>
+    <color name="mdw_background">#FFF7F7F7</color>
+    <color name="mdw_background2">#FFEBECF2</color>
+    <!-- loading button 不可用背景渐变色 -->
+    <color name="mdw_background_grey">#FFD8D8D8</color>
+    <color name="mdw_background_grey2">#FFBFBFBF</color>
+    <!-- loading button 弱样式渐变色 -->
+    <color name="mdw_background_grey3">#CCCBCED9</color>
+    <color name="mdw_background_grey4">#CC767D91</color>
+    <color name="mdw_page_bg_1">#FFF8F9FB</color>
+    <color name="mdw_page_bg_2">#FFE8EDF1</color>
+    <color name="mdw_retain_card_shadow">#66CCD0D7</color>
+
+    <color name="mdw_take_btn_black">#252631</color>
+    <color name="mdw_take_btn_black2">#303547</color>
+    <color name="mdw_take_take_put_grey">#FF999999</color>
+    <color name="mdw_take_time_grey">#A8ABB1</color>
+
+    <color name="mdw_setting_keyboard">#FF565A69</color>
+    <color name="mdw_setting_badge_view">#FFFF4D66</color>
+    <color name="mdw_setting_admin_unSelect">#FF666666</color>
+    <color name="mdw_setting_admin_Select">#FFFF3F49</color>
+    <color name="mdw_setting_line_color">#FFE9E9E9</color>
+</resources>

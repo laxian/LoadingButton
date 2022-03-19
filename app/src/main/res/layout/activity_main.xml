@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2E2D4D"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <com.zwx.loadingbutton.LoadingButton
+        android:id="@+id/first"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#BE6E46"
+        app:pbLoadingText="@string/loading"
+        app:pbProgressColor="#F9D8FB"
+        app:pbText="match_parent"
+        app:pbTextColor="#8A4FFF"
+        app:pbTextSize="10sp" />
+
+    <com.zwx.loadingbutton.LoadingButton
+        android:id="@+id/second"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:background="#FFE548"
+        android:paddingHorizontal="12dp"
+        app:pbIndeterminateDrawable="@drawable/mdw_progressbar_circle"
+        app:pbLoadingText="LOGIN"
+        app:pbProgressColor="#582707"
+        app:pbText="wrap_content"
+        app:pbTextColor="#7286A0"
+        app:pbTextSize="16sp" />
+
+    <com.zwx.loadingbutton.LoadingButton
+        android:id="@+id/third"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/mdw_btn_bg_round_gradient_enable_big"
+        app:pbYesStyle="true"
+        android:paddingHorizontal="12dp"
+        app:pbIndeterminateDrawable="@drawable/mdw_progressbar_circle"
+        app:pbLoadingText="LOGIN"
+        app:pbProgressColor="#582707"
+        app:pbText="wrap_content"
+        app:pbTextColor="#7286A0"
+        app:pbTextSize="16sp" />
+
+    <com.zwx.loadingbutton.LoadingButton
+        android:id="@+id/forth"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/mdw_btn_bg_round_gradient_enable_big"
+        app:pbYesStyle="true"
+        android:paddingHorizontal="12dp"
+        app:pbIndeterminateDrawable="@drawable/mdw_progressbar_circle"
+        app:pbLoadingText="LOGIN"
+        app:pbProgressColor="#582707"
+        app:pbProgressLeft="true"
+        app:pbText="EXACTLY"
+        app:pbTextColor="#7286A0"
+        app:pbTextSize="16sp" />
+
+</LinearLayout>
