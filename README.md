@@ -4,7 +4,21 @@
 
 <img src="https://github.com/laxian/LoadingButton/raw/main/images/record.gif" width="324" height="702" />
 
-## 使用示例
+## 使用方式
+
+maven仓库添加
+
+```Groovy
+maven { url "https://raw.githubusercontent.com/laxian/LoadingButton/master" }
+```
+
+依赖添加
+
+```Groovy
+implementation 'com.zwx.loadingbutton:loadingbutton:1.0.0'
+```
+
+## 代码示例
 
 布局方式：
 
@@ -72,6 +86,14 @@
 
 - 宽度为wrap_content时，内部元素alignParentEnd，会导致wrap_content失效
 
+## 版本更新
+
+`maven_push.gradle`更新`PUBLISH_VERSION`，然后执行：
+
+```Bash
+./gradlew uploadArchives
+```
+
 ## REF
 
-修改自[snadjafi](https://github.com/snadjafi/LoadingButton)
+参考[snadjafi](https://github.com/snadjafi/LoadingButton)
