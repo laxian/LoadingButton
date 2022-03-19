@@ -6,12 +6,11 @@
       <source id="mp4" src="https://github.com/laxian/LoadingButton/blob/master/images/video.mp4" type="video/mp4">
 </video>
 
-![img-loading](images/img-loading.png)
-![img-loading](images/img-cover.png)
+<hr>
 
-<img src="https://github.com/laxian/LoadingButton/raw/main/images/img-cover.png" width="360" height="640" />
+<img src="https://github.com/laxian/LoadingButton/raw/main/images/img-cover.png" width="108" height="234" />
 
-<img src="https://github.com/laxian/LoadingButton/raw/main/images/img-loading.png" width="360" height="640" />
+<img src="https://github.com/laxian/LoadingButton/raw/main/images/img-loading.png" width="108" height="234" />
 
 ## 使用示例
 
