@@ -2,9 +2,7 @@
 
 一个带ProgressBar的Button，通过自定义ConstraintLayout实现。
 
-<img src="https://github.com/laxian/LoadingButton/raw/main/images/img-cover.png" width="324" height="702" />
-
-<img src="https://github.com/laxian/LoadingButton/raw/main/images/img-loading.png" width="324" height="702" />
+<img src="https://github.com/laxian/LoadingButton/raw/main/images/img-record.gif" width="324" height="702" />
 
 ## 使用示例
 
