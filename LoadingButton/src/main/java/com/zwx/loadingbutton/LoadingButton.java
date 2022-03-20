@@ -172,6 +172,13 @@ public class LoadingButton extends ConstraintLayout {
         setTextSwitcherText(raw, formatArgs);
     }
 
+    public void setLoadingText(@StringRes int resId, Object... formatArgs) {
+        this.mLoadingTextId = resId;
+        mLoadingTextFormatArgs = formatArgs;
+        String text = getResources().getString(resId, formatArgs);
+        setLoadingText(text);
+    }
+
     public void setLoadingText(String text) {
         if (text != null) {
             mLoadingText = text;
