@@ -3,7 +3,7 @@ ext {
     GITHUB_REPO_PATH = "/Users/leochou/AndroidStudioProjects/LoadingButton/"
     PUBLISH_GROUP_ID = 'com.zwx.loadingbutton'
     PUBLISH_ARTIFACT_ID = 'loadingbutton'
-    PUBLISH_VERSION = '1.0.2'
+    PUBLISH_VERSION = '1.0.3'
 }
 uploadArchives {
     repositories.mavenDeployer {

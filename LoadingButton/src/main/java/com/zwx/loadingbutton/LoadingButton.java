@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.transition.TransitionManager;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.annotation.StringRes;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
@@ -262,7 +264,7 @@ public class LoadingButton extends ConstraintLayout {
                 setProgressColor(progressColor);
 
                 int textColor = a.getColor(R.styleable.LoadingButton_pbTextColor, DEFAULT_COLOR);
-                setTextColor(textColor);
+                mTextColor = textColor;
 
                 mYes = a.getBoolean(R.styleable.LoadingButton_pbYesStyle, true);
                 mIsStyleWeak = a.getBoolean(R.styleable.LoadingButton_pbWeakStyle, false);
@@ -275,7 +277,7 @@ public class LoadingButton extends ConstraintLayout {
             int white = Color.WHITE;
             mLoadingText = getContext().getString(R.string.default_loading);
             setProgressColor(white);
-            setTextColor(white);
+            mTextColor = white;
             setTextSize(mDefaultTextSize);
         }
         if (mProgressBarLeftMode) {
@@ -370,14 +372,19 @@ public class LoadingButton extends ConstraintLayout {
         mTextSize = size;
     }
 
-    private void setTextColor(int textColor) {
-        this.mTextColor = textColor;
+    public void setTextColor(int textColor) {
+        for (int i = 0; i < mTextSwitcher.getChildCount(); i++) {
+            ((TextView)mTextSwitcher.getChildAt(i)).setTextColor(textColor);
+        }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public void setTextAppearence(int resId) {
         if (resId != this.mTextAppearence) {
             this.mTextAppearence = resId;
-            invalidate();
+            for (int i = 0; i < mTextSwitcher.getChildCount(); i++) {
+                ((TextView)mTextSwitcher.getChildAt(i)).setTextAppearance(resId);
+            }
         }
     }
 
