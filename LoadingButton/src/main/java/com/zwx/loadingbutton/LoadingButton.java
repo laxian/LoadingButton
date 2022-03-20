@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.transition.TransitionManager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 
@@ -36,10 +38,9 @@ public class LoadingButton extends ConstraintLayout {
     private int mDefaultTextSize;
     private ProgressBar mProgressBar;
     private TextSwitcher mTextSwitcher;
-    private String mLoadingMessage;
-    private String mButtonText;
     private float mTextSize;
     private int mTextColor;
+    private int mTextAppearence;
     private boolean mIsLoadingShowing;
     private Typeface mTypeface;
     private Animation inRight;
@@ -49,6 +50,29 @@ public class LoadingButton extends ConstraintLayout {
     private boolean mYes;
     private boolean mIsStyleWeak;
     private boolean mProgressBarLeftMode;
+
+    private String mLoadingText;
+    private String mButtonText;
+
+    /**
+     * Loading状态字符串res id
+     */
+    private int mLoadingTextId;
+
+    /**
+     * 正常状态字符串res id
+     */
+    private int mButtonTextId;
+
+    /**
+     * Loading状态字符串格式化参数
+     */
+    private Object[] mLoadingTextFormatArgs;
+
+    /**
+     * 正常状态字符串格式化参数
+     */
+    private Object[] mButtonTextFormatArgs;
     //endregion
 
     //region Constructors
@@ -105,9 +129,52 @@ public class LoadingButton extends ConstraintLayout {
         }
     }
 
+    /**
+     * 设置正常状态字符串res id
+     *
+     * @param resId 正常状态字符串res id
+     */
+    public void setText(@StringRes int resId) {
+        mButtonTextId = resId;
+        mButtonTextFormatArgs = null;
+        if (mTextSwitcherReady) {
+            setTextSwitcherText(mButtonTextId);
+        }
+    }
+
+    /**
+     * 设置正常状态字符串res id
+     *
+     * @param resId 正常状态字符串res id
+     * @param formatArgs 格式化参数
+     */
+    public void setText(@StringRes int resId, Object... formatArgs) {
+        mButtonTextId = resId;
+        mButtonTextFormatArgs = formatArgs;
+        if (mTextSwitcherReady) {
+            setTextSwitcherText(mButtonTextId, mButtonTextFormatArgs);
+        }
+    }
+
+    private void setTextSwitcherText(String text, Object... formatArgs) {
+        mTextSwitcher.setInAnimation(mCurrentInDirection == IN_FROM_LEFT ? inLeft : inRight);
+        if (formatArgs != null && formatArgs.length > 0) {
+            text = String.format(text, formatArgs);
+        }
+        mTextSwitcher.setText(text);
+    }
+
+    private void setTextSwitcherText(@StringRes int resId, Object... formatArgs) {
+        if (resId == 0) {
+            return;
+        }
+        String raw = getResources().getString(resId);
+        setTextSwitcherText(raw, formatArgs);
+    }
+
     public void setLoadingText(String text) {
         if (text != null) {
-            mLoadingMessage = text;
+            mLoadingText = text;
         }
     }
 
@@ -120,13 +187,21 @@ public class LoadingButton extends ConstraintLayout {
     public void showLoading() {
         if (!mIsLoadingShowing) {
             mProgressBar.setVisibility(View.VISIBLE);
-            mTextSwitcher.setText(mLoadingMessage);
+            setTextSwitcherText(mLoadingText, mLoadingTextFormatArgs);
             mIsLoadingShowing = true;
             setEnabled(false);
         }
     }
 
-    public void showButtonText() {
+    public void showJustLoading() {
+        if (!mIsLoadingShowing) {
+            mProgressBar.setVisibility(View.VISIBLE);
+            mIsLoadingShowing = true;
+            setEnabled(false);
+        }
+    }
+
+    public void hideLoading() {
         if (mIsLoadingShowing) {
             mProgressBar.setVisibility(View.INVISIBLE);
             mTextSwitcher.setText(mButtonText);
@@ -135,7 +210,7 @@ public class LoadingButton extends ConstraintLayout {
         }
     }
 
-    public boolean isLoadingShowing() {
+    public boolean isLoading() {
         return mIsLoadingShowing;
     }
 
@@ -158,14 +233,19 @@ public class LoadingButton extends ConstraintLayout {
                 setTextSize(textSize);
 
                 String text = a.getString(R.styleable.LoadingButton_pbText);
+                mButtonTextId = a.getResourceId(R.styleable.LoadingButton_pbText, 0);
                 setText(text);
 
-                mLoadingMessage = a.getString(R.styleable.LoadingButton_pbLoadingText);
+                mLoadingTextId = a.getResourceId(R.styleable.LoadingButton_pbLoadingText, R.string.default_loading);
+                mLoadingText = a.getString(R.styleable.LoadingButton_pbLoadingText);
 
-                if (mLoadingMessage == null) {
-                    mLoadingMessage = getContext().getString(R.string.default_loading);
+                if (mLoadingText == null) {
+                    mLoadingText = getContext().getString(R.string.default_loading);
                 }
 
+                Log.d("LoadingButton", "mLoadingTextResId: " + mLoadingTextId);
+                Log.d("LoadingButton", "R.string.loading: " + R.string.default_loading);
+                Log.d("LoadingButton", "mLoadingText: " + mLoadingText);
                 Drawable indeterminateDrawable = a.getDrawable(R.styleable.LoadingButton_pbIndeterminateDrawable);
                 if (indeterminateDrawable != null) {
                     mProgressBar.setIndeterminateDrawable(indeterminateDrawable);
@@ -180,13 +260,13 @@ public class LoadingButton extends ConstraintLayout {
                 mYes = a.getBoolean(R.styleable.LoadingButton_pbYesStyle, true);
                 mIsStyleWeak = a.getBoolean(R.styleable.LoadingButton_pbWeakStyle, false);
                 mProgressBarLeftMode = a.getBoolean(R.styleable.LoadingButton_pbProgressLeft, false);
-
+                mTextAppearence = a.getResourceId(R.styleable.LoadingButton_pbTextAppearence, -1);
             } finally {
                 a.recycle();
             }
         } else {
             int white = Color.WHITE;
-            mLoadingMessage = getContext().getString(R.string.default_loading);
+            mLoadingText = getContext().getString(R.string.default_loading);
             setProgressColor(white);
             setTextColor(white);
             setTextSize(mDefaultTextSize);
@@ -246,7 +326,7 @@ public class LoadingButton extends ConstraintLayout {
     }
 
     private void setupTextSwitcher() {
-        ViewSwitcherFactory factory = new ViewSwitcherFactory(getContext(), mTextColor, mTextSize, mTypeface);
+        ViewSwitcherFactory factory = new ViewSwitcherFactory(getContext(), mTextColor, mTextSize, mTypeface, mTextAppearence);
         mTextSwitcher.setFactory(factory);
 
         inRight = AnimationUtils.loadAnimation(getContext(), R.anim.slide_in_right);
@@ -287,31 +367,44 @@ public class LoadingButton extends ConstraintLayout {
         this.mTextColor = textColor;
     }
 
+    public void setTextAppearence(int resId) {
+        if (resId != this.mTextAppearence) {
+            this.mTextAppearence = resId;
+            invalidate();
+        }
+    }
+
     public static class ViewSwitcherFactory implements ViewSwitcher.ViewFactory {
 
         //region Variables
         private final int textColor;
         private final float textSize;
         private final Typeface typeFace;
+        private final int textAppearence;
         private final Context context;
         //endregion
 
         //region Constructor
-        public ViewSwitcherFactory(Context context, int textColor, float textSize, Typeface typeface) {
+        public ViewSwitcherFactory(Context context, int textColor, float textSize, Typeface typeface, int textAppearence) {
             this.context = context;
             this.textColor = textColor;
             this.textSize = textSize;
             this.typeFace = typeface;
+            this.textAppearence = textAppearence;
         }
         //endregion
 
         @Override
         public View makeView() {
             TextView tv = new TextView(context);
-            tv.setTextColor(textColor);
-            tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
             tv.setGravity(Gravity.CENTER);
             tv.setTypeface(typeFace);
+            if (textAppearence != -1) {
+                tv.setTextAppearance(context, textAppearence);
+            } else {
+                tv.setTextColor(textColor);
+                tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
+            }
 
             return tv;
         }

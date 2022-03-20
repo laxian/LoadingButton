@@ -1,3 +1,4 @@
 <resources>
     <string name="default_loading">Loading…</string>
+    <string name="loading">Loading</string>
 </resources>

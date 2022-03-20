@@ -18,15 +18,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         findViewById(R.id.first).setOnClickListener(this);
-        findViewById(R.id.second).setOnClickListener(this);
-        findViewById(R.id.third).setOnClickListener(this);
-        findViewById(R.id.forth).setOnClickListener(this);
+//        findViewById(R.id.second).setOnClickListener(this);
+//        findViewById(R.id.third).setOnClickListener(this);
+//        findViewById(R.id.forth).setOnClickListener(this);
 
         LoadingButton button = new LoadingButton(this);
         LoadingButton.ViewSwitcherFactory factory = new LoadingButton.ViewSwitcherFactory(this,
                 getResources().getColor(android.R.color.white),
                 44F,
-                Typeface.DEFAULT);
+                Typeface.DEFAULT, -1);
         button.setTextFactory(factory);
 
         button.setProgressBarLeftMode();
@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         v.postDelayed(new Runnable() {
             @Override
             public void run() {
-                ((LoadingButton) v).showButtonText();
+                ((LoadingButton) v).hideLoading();
             }
-        }, 5000);
+        }, 3000);
     }
 }

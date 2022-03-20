@@ -9,6 +9,7 @@
         <attr name="pbIndeterminateDrawable" format="reference"/>
         <attr name="pbYesStyle" format="boolean" />
         <attr name="pbWeakStyle" format="boolean" />
+        <attr name="pbTextAppearence" format="reference" />
         <attr name="pbProgressSize" format="dimension" />
         <attr name="pbProgressLeft" format="boolean" />
     </declare-styleable>
